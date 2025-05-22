@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обо мне</title>
+
+    <style>
+      @font-face {
+        font-family: 'Deledda';
+        src: url('Deledda.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Mister Brush';
+        src: url('Mister Brush.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Desyatiy';
+        src: url('Desyatiy.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f1f1f;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        overflow-x: hidden;
+      }
+      
+      .page-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .main-content-container {
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: row;
+         align-items: stretch;
+         justify-content: flex-end;
+         width: 100%;
+      }
+      .horizontal-menu-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 120px;
+      }
+      .vertical-card-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 125px;
+        height: 100%;
+        position: relative;
+      }
+      .testimonial-card {
+        position: relative;
+        width: 120px;
+        height: 110px;
+        margin: 0 auto;
+      }
+      .image-container-compact {
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .main-section-title {
+        position: absolute;
+        top: 35px;
+        width: 100%;
+        padding: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        transition: color 0.3s ease; 
+        pointer-events: auto; /* Обеспечиваем обработку hover */
+        text-decoration: none; 
+      }
+      .main-section-title:hover {
+        color: #BE4733 !important; /* Принудительное применение стиля */
+        text-decoration: none; 
+      }
+      .default-img {
+        opacity: 1;
+      }
+      .hover-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .default-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .hover-img {
+        opacity: 1;
+      }
+
+
+
+
+
+
+      .content-wrapper {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        max-width: 1354px;
+        padding-right: 82px;
+        margin-top: 6px;
+      }
+      .chair-image {
+        position:absolute;
+        box-sizing: border-box;
+        display: block;
+        width: 720px;
+        max-width: initial;
+        height: 804px;
+        margin-left: 550px;
+        border: none;
+        object-fit: cover;
+        margin-top: -50px;
+      }
+      .about-me-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .text-content {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        padding-right: 82px;
+        padding-left: 82px;
+        margin-top: 0px;
+      }
+      .graphic-designer-profile-container {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+        
+      .graphic-designer-profile-container2 {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      .graphic-designer-profile {
+        box-sizing: border-box;
+        display: block;
+        width: 110px;
+        max-width: initial;
+        position: absolute;
+        z-index: -1; 
+        margin-top: 195px;
+        margin-left: -30px;
+      }
+
+      .graphic-designer-profile2 {
+        box-sizing: border-box;
+        display: block;
+        width: 34px;
+        max-width: initial;
+        position: absolute;
+        z-index: -1; 
+        margin-left: 235px;
+        margin-top: -255px;
+      }
+
+      .brushstroke-heading2 {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 190px;
+        color: white;
+        text-align: left;
+        line-height: 0.8; 
+      }
+      .brushstroke-heading {
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 190px;
+        text-align: left;
+        letter-spacing: -5px;
+        line-height: 0.9; 
+        margin-left: 5px;
+      }
+      .brushstroke-heading1 {
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 190px;
+        text-align: left;
+        letter-spacing: 17.5px;
+        line-height: 0.9;
+        margin-left: 5px; 
+      }
+      .two-line-heading {
+        display: flex;
+        flex-direction: column;
+        line-height: 0.8;
+      }
+      .two-line-heading span {
+        display: block; 
+      }
+      .graphic-design-info-block {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 500px;
+        padding: 0;
+        margin: 20px 0 0 0;
+        font-family: 'Deledda', 'Arial', 'Helvetica', sans-serif;
+        font-size: 20px;
+        font-weight: 300;
+        color: white;
+        text-align: left;
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
+
+
+
+        /* Стиль для изображения-триггера */
+        .portfolio-button-container {
+    position: relative;
+    width: 200px; /* Уменьшенный размер */
+    margin-left: 82px; /* Выравнивание по левому краю с основным контентом */
+    margin-top: 30px;
+  }
+  
+  .portfolio-button {
+    width: 100%;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  .portfolio-button.default {
+    opacity: 1;
+  }
+  
+  .portfolio-button.hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .portfolio-button-container:hover .portfolio-button.default {
+    opacity: 0;
+  }
+  
+  .portfolio-button-container:hover .portfolio-button.hover {
+    opacity: 1;
+  }
+    .action-container {
+      margin-top: -20px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .action-text {
+      font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+      font-size: 42px;
+      color: #BE4733;
+      position: absolute;
+      margin-left: 270px; /* Позиционируем текст поверх стрелки */
+      margin-top: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      text-align: right;
+      line-height: 1.2;
+    }
+    
+    .portfolio-button-container {
+      position: relative;
+      width: 200px;
+      z-index: 0;
+    }
+    
+    .ctr-image {
+      width: 125px;
+      margin-top: 30px;
+       margin-left: -30px;
+      position: relative;
+      z-index: 1;
+    }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Стандартный favicon -->
+  <link rel="icon" href="лого-01.ico" type="image/x-icon">
+  
+  <!-- Для Retina-дисплеев -->
+  <link rel="icon" href="лого32.png" sizes="32x32">
+  <link rel="icon" href="лого64-01.png" sizes="64x64">
+
+  
+  </head>
+  <body>
+
+<!-- Шапка с кнопками -->
+    <div class="page-container">
+          <div class="main-content-container">
+            <div class="horizontal-menu-container">
+              <!-- Главная -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="index.html" class="main-section-title">главная</a>
+              </div>
+              
+              <!-- Обо мне -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="obo mne.html" class="main-section-title">обо мне</a>
+              </div>
+              
+              <!-- Портфолио -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="portfolo.html" class="main-section-title">портфолио</a>
+              </div>
+              
+              <!-- Контакты -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="kontakt.html" class="main-section-title">контакты</a>
+              </div>
+              
+              <!-- Отзывы -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="otzv.html" class="main-section-title">отзывы</a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+           <!-- Основной контент -->
+        <div class="content-wrapper">
+          <img src="кресло.png" class="chair-image" alt="Кресло Hanley" />
+          <div class="text-content">
+            <div class="about-me-content">
+              <div class="graphic-designer-profile-container">
+                <img src="image_554b2af2.png" class="graphic-designer-profile" />
+                <p class="brushstroke-heading2 two-line-heading">
+                  <span class="brushstroke-heading two-line-heading">обо</span>
+                  <span class="brushstroke-heading1">мне</span>
+                </p>
+              </div>
+              <div class="graphic-designer-profile-container2">
+                <img src="image_e5e1c405.png" class="graphic-designer-profile2" />
+              </div>
+              <p class="graphic-design-info-block">
+                Я учусь в СПбГУПТД на графического дизайнера в рекламе. <br />
+                Графический дизайн, иллюстрация.<br />
+                Навыки:<br /> Adobe Photoshop, Adobe Illustrator, Adobe InDesign.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+<div class="action-container">
+      <div class="portfolio-button-container">
+        <a href="portfolo.html">
+          <img src="картинка3_1.png" class="portfolio-button default">
+          <img src="картинка3_2.png" class="portfolio-button hover">
+        </a>
+      </div>
+      <img src="image_стрелка.png" class="ctr-image" />
+      <div class="action-text">Интересно?<br>Жми!</div>
+    </div>
+    
+
+
+
+
+    </div>
+  </body>
+</html>

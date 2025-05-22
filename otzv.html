@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+
+    <style>
+      @font-face {
+        font-family: 'Deledda';
+        src: url('Deledda.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Mister Brush';
+        src: url('Mister Brush.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Desyatiy';
+        src: url('Desyatiy.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f1f1f;
+        min-height: 100vh;
+        display: flex;
+      }
+      
+      .page-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .main-content-container {
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: row;
+         align-items: stretch;
+         justify-content: flex-end;
+         width: 100%;
+      }
+      .horizontal-menu-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 120px;
+      }
+      .vertical-card-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 125px;
+        height: 100%;
+        position: relative;
+      }
+      .testimonial-card {
+        position: relative;
+        width: 120px;
+        height: 110px;
+        margin: 0 auto;
+      }
+      .image-container-compact {
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .main-section-title {
+        position: absolute;
+        top: 35px;
+        width: 100%;
+        padding: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        transition: color 0.3s ease; 
+        pointer-events: auto;
+        text-decoration: none; 
+      }
+      .main-section-title:hover {
+        color: #BE4733 !important;
+        text-decoration: none; 
+      }
+      .default-img {
+        opacity: 1;
+      }
+      .hover-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .default-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .hover-img {
+        opacity: 1;
+      }
+
+      /* Стили для раздела отзывов */
+      .reviews-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 82px;
+        margin-top: 30px;
+      }
+
+      .reviews-form-container {
+        width: 400px;
+        margin-top: -370px;
+      }
+
+      .reviews-display-container {
+        width: 500px;
+        margin-left: 800px;
+        margin-top: -100px;
+      }
+
+      .majestic-heading {
+        padding: 0;
+        margin: 0;
+        font: 400 190px Mister Brush;
+        color: white;
+        letter-spacing: -2.2px;
+        margin-left: 82px;
+        margin-top: -40px;
+      }
+
+      .brushy-heading {
+        padding: 0;
+        margin: 0;
+        margin-top: 20px;
+        font: 400 42px Mister Brush;
+        color: #be4733;
+        margin-left: 82px;
+
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 500px;
+        text-align: left;
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
+      .brushy-heading2 {
+        padding: 0;
+        margin: 0;
+        font: 400 42px Mister Brush;
+        color: #ffffff;
+
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 500px;
+        text-align: left;
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 10px;
+            font-family: 'Mister Brush';
+            font-size: 36px;
+            color: white;
+      }
+
+      .form-group input[type="text"],
+      .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        background: #4F4F4F;
+        border: none;
+        border-radius: 10px;
+        color: #1f1f1f;
+        font: 300 20px Deledda;
+      }
+
+      .form-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+
+      .rating input {
+        display: none;
+      }
+
+      .rating label {
+        font-size: 30px;
+        color: #4F4F4F;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      .rating input:checked ~ label,
+      .rating label:hover,
+      .rating label:hover ~ label {
+        color: #BE4733;
+      }
+
+      .submit-btn {
+        background-color: #4F4F4F;
+        color: #BE4733;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font: 400 36px Mister Brush;
+        transition: 0.3s;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover {
+        opacity: 0.8;
+      }
+
+      .reviews-carousel {
+        margin-top: 30px;
+      }
+
+      .review-item {
+        background: #D9D9D9;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: none;
+        max-width: 400px;
+      }
+
+      .review-item.active {
+        display: block;
+      }
+
+      .review-author {
+        font: 400 36px Mister Brush;
+        color: #1f1f1f;
+        margin-bottom: 10px;
+      }
+
+      .review-rating {
+        color: #BE4733;
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .review-text {
+        font: 300 20px Deledda;
+        color: #1f1f1f;
+        margin-bottom: 10px;
+        margin-top: 20px;
+      }
+
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 441px;
+      }
+
+      .carousel-control {
+        background: none;
+        border: none;
+        color: #BE4733;
+        font-size: 30px;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        width: 441px;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #4F4F4F;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .indicator.active {
+        background: #BE4733;
+
+      }
+
+      .otzv {
+        width: 100%;
+        height: 486px;
+      }
+    </style>
+
+    <!-- Стандартный favicon -->
+    <link rel="icon" href="лого-01.ico" type="image/x-icon">
+    <!-- Для Retina-дисплеев -->
+    <link rel="icon" href="лого32.png" sizes="32x32">
+    <link rel="icon" href="лого64-01.png" sizes="64x64">
+  </head>
+  <body>
+    <!-- Шапка с кнопками -->
+    <div class="page-container">
+      <div class="main-content-container">
+        <div class="horizontal-menu-container">
+          <!-- Главная -->
+          <div class="vertical-card-container">
+            <div class="testimonial-card">
+              <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+              <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+            </div>
+            <a href="index.html" class="main-section-title">главная</a>
+          </div>
+          
+          <!-- Обо мне -->
+          <div class="vertical-card-container">
+            <div class="testimonial-card">
+              <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+              <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+            </div>
+            <a href="obo mne.html" class="main-section-title">обо мне</a>
+          </div>
+          
+          <!-- Портфолио -->
+          <div class="vertical-card-container">
+            <div class="testimonial-card">
+              <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+              <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+            </div>
+            <a href="portfolo.html" class="main-section-title">портфолио</a>
+          </div>
+          
+          <!-- Контакты -->
+          <div class="vertical-card-container">
+            <div class="testimonial-card">
+              <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+              <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+            </div>
+            <a href="kontakt.html" class="main-section-title">контакты</a>
+          </div>
+          
+          <!-- Отзывы -->
+          <div class="vertical-card-container">
+            <div class="testimonial-card">
+              <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+              <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+            </div>
+            <a href="otzv.html" class="main-section-title">отзывы</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Основной контент страницы отзывов -->
+      <p class="majestic-heading">отзывы</p>
+
+
+      <div class="otzv">
+      <p class="brushy-heading">Хочешь поделиться опытом работы со мной? Тебе сюда!</p>
+        
+      
+      <!-- Карусель отзывов -->
+        <div class="reviews-display-container">
+          <p class="brushy-heading2">Отзывы наших клиентов:</p>
+          
+          <div class="reviews-carousel">
+            <div class="review-item active">
+              <div class="review-author">Антон Иванов</div>
+              <div class="review-rating">★★★★★</div>
+              <div class="review-text">Я заказал дизайн для футболки в подарок моей жене на Новый год. Художник действительно превзошел все мои ожидания! Дизайн оказался не только стильным, но и очень оригинальным. Он отлично передает настроение, которое я хотел вложить в подарок.
+
+Кроме того, я получил много положительных отзывов от друзей и семьи, когда показал им дизайн. </div>
+            </div>
+            
+            <div class="review-item">
+              <div class="review-author">Марина Брызгалова</div>
+              <div class="review-rating">★★★★☆</div>
+              <div class="review-text">Аня - крутая дизайнерша с отличными работами, которая не только придумывает качественные идеи для изображения, но и замечательно реализовывает их. Она ответственно относится к работе, стремясь выполнить дизайн как можно лучше. 
+Есть и минусы, например, при изображении людей не хватает динамики. 
+Однако, если дело касается котов - Ане нет равных!</div>
+            </div>
+            
+            <div class="review-item">
+              <div class="review-author">Юлия Смирнова</div>
+              <div class="review-rating">★★★★★</div>
+              <div class="review-text">Я хочу поделиться своим впечатлением о карточках с иллюстрациями, которые мы заказали для нашего корпоративного мероприятия. Эти карточки стали настоящим украшением нашего праздника! 
+Каждая карточка была выполнена с вниманием к деталям и выглядела очень профессионально. Мы использовали их для различных игр и активностей, и все были в восторге!</div>
+            </div>
+          </div>
+          
+          <div class="carousel-controls">
+            <button class="carousel-control prev">❮</button>
+            <button class="carousel-control next">❯</button>
+          </div>
+          
+          <div class="carousel-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="reviews-section">
+        <!-- Форма для добавления отзыва -->
+        <div class="reviews-form-container">
+          <form id="reviewForm">
+            <div class="form-group">
+              <label for="name">ФИО:</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Оценка:</label>
+              <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1" checked><label for="star1">★</label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="review">Ваш отзыв:</label>
+              <textarea id="review" name="review" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Отправить</button>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script>
+      // Обработка формы отзыва
+      document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const rating = document.querySelector('input[name="rating"]:checked').value;
+        const review = document.getElementById('review').value;
+        
+        // Здесь можно добавить код для отправки данных на сервер
+        alert('Спасибо за ваш отзыв! Он будет опубликован после модерации.');
+        
+        // Очистка формы
+        this.reset();
+        document.getElementById('star1').checked = true;
+      });
+
+      // Карусель отзывов
+      let currentReview = 0;
+      const reviews = document.querySelectorAll('.review-item');
+      const indicators = document.querySelectorAll('.indicator');
+      
+      function showReview(index) {
+        reviews.forEach(review => review.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        reviews[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentReview = index;
+      }
+      
+      document.querySelector('.prev').addEventListener('click', function() {
+        let newIndex = currentReview - 1;
+        if (newIndex < 0) newIndex = reviews.length - 1;
+        showReview(newIndex);
+      });
+      
+      document.querySelector('.next').addEventListener('click', function() {
+        let newIndex = currentReview + 1;
+        if (newIndex >= reviews.length) newIndex = 0;
+        showReview(newIndex);
+      });
+      
+      // Клик по индикаторам
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', function() {
+          showReview(index);
+        });
+      });
+    </script>
+  </body>
+</html>

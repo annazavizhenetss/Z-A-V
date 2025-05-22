@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+
+    <style>
+      @font-face {
+        font-family: 'Deledda';
+        src: url('Deledda.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Mister Brush';
+        src: url('Mister Brush.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Desyatiy';
+        src: url('Desyatiy.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f1f1f;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        overflow-x: hidden;
+      }
+      
+      .page-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+
+      .main-content-container {
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: row;
+         align-items: stretch;
+         justify-content: flex-end;
+         width: 100%;
+      }
+      .image-container1 {
+        box-sizing: border-box;
+        display: block;
+        width: 120px;
+        max-width: initial;
+        height: 110px;
+        border: none;
+        object-fit: cover;
+      }
+      .central-heading-style {
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        align-self: flex-end;
+        width: 124px;
+        padding: 0;
+        padding-bottom: 6px;
+        margin: 0;
+        margin-top: -100px;
+        margin-left: -40px;
+        font-family: 'Desyatiy', 'Arial', 'Helvetica', sans-serif;
+        font-size: 30px;
+        color: white;
+        text-align: center;
+        transform: translate(-10px, -30px); 
+      }
+      .horizontal-menu-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 120px;
+      }
+      .vertical-card-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center; /* Центрируем содержимое по горизонтали */
+        justify-content: center;
+        width: 125px;
+        height: 100%;
+        position: relative; /* Для позиционирования абсолютных элементов */
+      }
+      .main-section-title {
+        position: absolute;
+        top: 35px; /* Позиционируем текст ниже изображения */
+        width: 100%; /* Занимаем всю ширину контейнера */
+        padding: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 18px;
+        color: black;
+        text-align: center; /* Центрируем текст по горизонтали */
+        transition: color 0.3s ease; 
+        pointer-events: auto; /* Обеспечиваем обработку hover */
+        text-decoration: none; 
+      }
+      .main-section-title:hover {
+        color: #BE4733 !important; /* Принудительное применение стиля */
+      }
+      .testimonial-card {
+        position: relative;
+        width: 120px;
+        height: 110px;
+        margin: 0 auto;
+      }
+      .default-img {
+        opacity: 1;
+      }
+      .hover-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .default-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .hover-img {
+        opacity: 1;
+      }
+
+      .image-container-compact {
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .graphic-designer-profile-container1 {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        max-width: 1354px;
+        padding-right: 82px;
+        padding-left: 82px;
+        margin-top: 6px;
+      }
+      .graphic-designer-profile-container {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .graphic-designer-section {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .graphic-designer-profile-container2 {
+        flex: 0 0 auto;
+        align-self: stretch;
+        transform: translate(0px, -40px); 
+      }
+      .brushstroke-heading {
+        padding: 0;
+        margin: 0;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 190px;
+        color: white;
+        letter-spacing: -2.2px;
+      }
+      .brushstroke-talent {
+        padding: 0;
+        margin: 0;
+        margin-top: 47px;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 42px;
+        color: #be4733;
+      }
+      .artist-description-text-style {
+        box-sizing: border-box;
+        width: 395px; 
+        word-wrap: break-word; 
+        white-space: normal; 
+        padding: 0;
+        margin: 0;
+        margin-top: 15.5px;
+        font-family: 'Deledda', 'Arial', 'Helvetica', sans-serif;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        text-align: left;
+      }
+      .artist-bio-heading {
+        font-family: 'Deledda', 'Arial', 'Helvetica', sans-serif;
+        font-size: 24px;
+        color: #be4733;
+        text-align: left;
+      }
+      .graphic-designer-bio-section {
+        flex: 0 0 auto;
+        align-self: center;
+        margin-top: -10px;
+        margin-left: 75px;
+      }
+      .image-container {
+        box-sizing: border-box;
+        display: block;
+        width: 150px;
+        max-width: initial;
+        height: auto;
+        border: none;
+        object-fit: cover;
+      }
+      .profile-section {
+        flex: 0 0 auto;
+        padding-top: 579px;
+        margin-left: -114px;
+      }
+      .horizontal-spacing-container {
+        margin-top: -68px;
+        padding-top: -100px;
+        padding-bottom: 60px;
+        padding-right: 33px;
+        padding-left: 100px;
+      }
+      .image-container3 {
+        box-sizing: border-box;
+        display: block;
+        width: 89px;
+        max-width: initial;
+        height: 80px;
+      }
+      .vertical-margin-top {
+        margin-top: -40px;
+      }
+      .image-container2 {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 300px;
+        max-width: initial;
+        margin-left: 40px;
+      }
+      .hero-image-display-style {
+        position:absolute;
+        box-sizing: border-box;
+        display: block;
+        width: 565px;
+        max-width: initial;
+        height: 804px;
+        margin-left: 590px;
+        border: none;
+        object-fit: cover;
+        margin-top: 70px;
+      }
+      .graphic-designer-intro-text {
+        position: relative;
+        box-sizing: border-box;
+        display: block;
+        width: 213px;
+        max-width: initial;
+        height: 106px;
+        margin-left: 265px;
+        margin-top: 150px;
+        transform: translate(70px, 0px); 
+      }
+
+
+
+      .gmi {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+        margin: 0;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 42px;
+        color: #ffffff; /* Белый цвет по умолчанию */
+        text-decoration: none;
+        z-index: 2;
+        transition: color 0.3s ease; /* Плавное изменение цвета */
+        width: 300px;
+        margin-left: 75px;
+      }
+
+      .gmi:hover {
+        color: #BE4733; /* Красный цвет при наведении (как в других элементах) */
+      }
+
+      .image-with-text-container {
+        position: relative;
+        display: inline-block;
+      }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Стандартный favicon -->
+  <link rel="icon" href="лого-01.ico" type="image/x-icon">
+  
+  <!-- Для Retina-дисплеев -->
+  <link rel="icon" href="лого32.png" sizes="32x32">
+  <link rel="icon" href="лого64-01.png" sizes="64x64">
+  
+
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="dark-theme-container">
+        <div class="main-content-container">
+          <div class="horizontal-menu-container">
+
+           <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="index.html" class="main-section-title">главная</a>
+              </div>
+
+            <div class="vertical-card-container">
+              <div class="testimonial-card">
+                <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+              </div>
+              <a href="obo mne.html" class="main-section-title">обо мне</a>
+            </div>
+
+
+            <div class="vertical-card-container">
+              <div class="testimonial-card">
+                <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+              </div>
+              <a href="portfolo.html" class="main-section-title" >портфолио</a>
+            </div>
+
+
+            <div class="vertical-card-container">
+              <div class="testimonial-card">
+                <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+              </div>
+              <a href="kontakt.html" class="main-section-title">контакты</a>
+            </div>
+            <div class="vertical-card-container">
+              <div class="testimonial-card">
+                <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+              </div>
+              <a href="otzv.html" class="main-section-title">отзывы</a>
+            </div>
+          </div>
+        </div>
+        <div class="graphic-designer-profile-container1">
+          <div class="graphic-designer-profile-container">
+            <div class="graphic-designer-section">
+              <div class="graphic-designer-profile-container2">
+                <div>
+                  <p class="brushstroke-heading">Z.A.V.</p>
+                  <p class="brushstroke-talent">графический дизайнер</p>
+                </div>
+                <p class="artist-description-text-style">
+                  <span class="artist-description-text-style">
+                    Привет! Я Анна Завиженец и я занимаюсь графическим дизайном, также я увлекаюсь фотографией, иллюстрацией, живописью и рисунком.<br /><br />
+                    Могу создать для Вас классный дизайн для футболки, кружки, иллюстрации для вашей книги. Всё, что придёт в голову!<br /><br />
+                    Хочешь узнать больше
+                  </span>
+                  <span class="artist-bio-heading">ОБО МНЕ?</span>
+                </p>
+              </div>
+              <div class="graphic-designer-bio-section">
+                <img src="image_331d1a69.png" class="image-container" />
+              </div>
+            </div>
+            <div class="profile-section">
+              <div class="horizontal-spacing-container">
+                <img src="image_d5ed3997.png" class="image-container3" />
+              </div>
+              <div class="vertical-margin-top">
+                <div class="image-with-text-container">
+                  <img src="f.png" class="image-container2" />
+                  <a href="obo mne.html" class="gmi">ЖМИ СЮДА!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img src="image_d2e98f98.png" class="graphic-designer-intro-text" />
+          <img src="image_b4a06c9a.png" class="hero-image-display-style" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

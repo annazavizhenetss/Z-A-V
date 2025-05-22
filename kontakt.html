@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+
+    <style>
+      @font-face {
+        font-family: 'Deledda';
+        src: url('Fonts/Deledda.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Mister Brush';
+        src: url('Fonts/Mister Brush.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Desyatiy';
+        src: url('Fonts/Desyatiy.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f1f1f;
+        min-height: 100vh;
+        display: flex;
+      }
+      
+      .page-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .main-content-container {
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: row;
+         align-items: stretch;
+         justify-content: flex-end;
+         width: 100%;
+      }
+      .horizontal-menu-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 120px;
+      }
+      .vertical-card-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 125px;
+        height: 100%;
+        position: relative;
+      }
+      .testimonial-card {
+        position: relative;
+        width: 120px;
+        height: 110px;
+        margin: 0 auto;
+      }
+      .image-container-compact {
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .main-section-title {
+        position: absolute;
+        top: 35px;
+        width: 100%;
+        padding: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        transition: color 0.3s ease; 
+        pointer-events: auto; /* Обеспечиваем обработку hover */
+        text-decoration: none; 
+      }
+      .main-section-title:hover {
+        color: #BE4733 !important; /* Принудительное применение стиля */
+        text-decoration: none; 
+      }
+      .default-img {
+        opacity: 1;
+      }
+      .hover-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .default-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .hover-img {
+        opacity: 1;
+      }
+
+
+
+
+      .contact-info-section {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding-right: 20px;
+      }
+      .contact-info-section2 {
+        flex: 0 0 auto;
+        margin-left: 82px;
+      }
+      .majestic-heading {
+        padding: 0;
+        margin: 0;
+        font: 400 190px Mister Brush;
+        color: white;
+        letter-spacing: -2.2px;
+      }
+      .brushy-heading {
+        padding: 0;
+        padding-right: 6px;
+        padding-left: 6px;
+        margin: 0;
+        margin-top: 25px;
+        font: 400 42px Mister Brush;
+        color: #be4733;
+      }
+.contact-info-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 50px;
+}
+      .contact-info-image-container {
+        box-sizing: border-box;
+        display: block;
+        width: 453px;
+        max-width: initial;
+        height: 587px;
+        margin-right: 48px;
+        border: none;
+        object-fit: cover;
+      }
+      .contact-info-container1 {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+      .contact-info-section1 {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        gap: 65px;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding-top: 12px;
+        margin-left: 200px;
+      }
+      .contact-info-text-style {
+        flex: 0 0 auto;
+        padding: 0;
+        margin: 0;
+        font: 300 36px Deledda Open;
+        color: white;
+        white-space: pre-wrap;
+      }
+      .contact-info-text-style:nth-child(3) {
+        margin-top: -6.91px;
+      }
+      .image-container-aspect-ratio-cover {
+        box-sizing: border-box;
+        display: block;
+        width: 73px;
+        max-width: initial;
+        height: 460px;
+        border: none;
+        object-fit: cover;
+        margin-left: 20px;
+      }
+
+.arrow-image {
+    position: absolute;
+    width: 120px;
+    left: -100px; /* Позиционируем относительно контейнера */
+    top: -10px;
+    z-index: 5;
+}
+
+        /* Стиль для изображения-триггера */
+.trigger-image-container {
+    position: relative;
+    width: 350px;
+    margin-left: 220px; /* Регулируем отступ слева */
+    z-index: 10;
+}
+
+.trigger-image {
+    width: 100%;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+        
+        .trigger-image.default {
+            opacity: 1;
+        }
+        
+        .trigger-image.hover {
+            opacity: 0;
+        }
+        
+        .trigger-image-container:hover .trigger-image.default {
+            opacity: 0;
+        }
+        
+        .trigger-image-container:hover .trigger-image.hover {
+            opacity: 1;
+        }
+
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background: #1f1f1f;
+            margin: auto;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 800px;
+            height: 800px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            overflow-y: auto;
+            border-radius: 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .close {
+            color: #BE4733;
+            font-size: 48px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 50px;
+            line-height: 0.8;
+        }
+
+        /* Стили для анкеты */
+        .form-title {
+            color: #ffffff;
+            font-family: 'Mister Brush', cursive;
+            font-size: 100px;
+            line-height: 0.9;
+            text-align: right;
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Mister Brush';
+            font-size: 36px;
+            color: white;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 15px;
+            background: #4F4F4F;
+            border: none;
+            border-radius: 10px;
+            box-sizing: border-box;
+            color: white;
+            font-size: 18px;
+            font-family: 'Deledda', sans-serif;
+        }
+
+        .radio-group {
+            margin: 15px 0;
+        }
+
+        .radio-option {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-option label {
+            font-family: 'Mister Brush', cursive;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 0;
+            padding-left: 50px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-option label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid #4F4F4F;
+            border-radius: 5px;
+            background: #1f1f1f;
+        }
+
+        .radio-option input[type="radio"]:checked + label:after {
+            content: "✓";
+            position: absolute;
+            left: 7px;
+            top: -5px;
+            font-family: 'Mister Brush', cursive;
+            font-size: 36px;
+            color:#BE4733;
+        }
+
+        .submit-btn-container {
+          margin-top: 20px; /* Увеличиваем отступ сверху */
+          clear: both; /* Очищаем обтекание */
+          position: relative; /* Делаем контейнер относительным */
+          z-index: 10; /* Поднимаем над другими элементами */
+        }
+
+        .submit-btn {
+            background-color: #4F4F4F;
+            color: #BE4733;
+            padding: 0px 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Mister Brush', cursive;
+            font-size: 36px;
+            float: right;
+            transition: 0.3s;
+            margin-top: -55px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.8;
+        }
+      @media (max-width: 1200px) {
+    .trigger-image-container {
+        width: 350px;
+        margin-left: -80px;
+    }
+    
+    .arrow-image {
+        width: 100px;
+        left: -70px;
+    }
+    }
+
+    @media (max-width: 768px) {
+    .trigger-image-container {
+        width: 300px;
+        margin-left: -60px;
+    }
+    
+    .arrow-image {
+        width: 80px;
+        left: -60px;
+        top: 40px;
+    }
+    }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+
+        /* Добавляем новые стили для компактной формы */
+    .compact-modal .modal-content {
+      width: 600px;
+      height: 600px;
+      padding: 30px;
+    }
+    
+    .compact-modal .form-title {
+      font-size: 70px;
+      margin-bottom: 20px;
+    }
+    
+    .compact-modal .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .compact-modal .form-group label {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .compact-modal .form-group input[type="text"],
+    .compact-modal .form-group input[type="email"],
+    .compact-modal .form-group input[type="tel"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    
+    .compact-modal .radio-option {
+      margin: 10px 0;
+    }
+    
+    .compact-modal .radio-option label {
+      font-size: 24px;
+      padding-left: 40px;
+    }
+    
+    .compact-modal .radio-option label:before {
+      width: 25px;
+      height: 25px;
+      top: 2px;
+    }
+    
+    .compact-modal .radio-option input[type="radio"]:checked + label:after {
+      font-size: 24px;
+      left: 5px;
+      top: 0px;
+    }
+    
+    .compact-modal .submit-btn {
+      font-size: 24px;
+      padding: 10px 30px;
+    }
+
+  .validation-error {
+    color: #BE4733;
+    font-family: 'Deledda', sans-serif;
+    font-size: 14px;
+    display: block;
+    margin-top: 5px;
+    height: 16px;
+  }
+  
+  input:invalid {
+    border-color: #BE4733;
+  }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Стандартный favicon -->
+  <link rel="icon" href="лого-01.ico" type="image/x-icon">
+  
+  <!-- Для Retina-дисплеев -->
+  <link rel="icon" href="лого32.png" sizes="32x32">
+  <link rel="icon" href="лого64-01.png" sizes="64x64">
+
+  
+  </head>
+  <body>
+
+<!-- Шапка с кнопками -->
+    <div class="page-container">
+          <div class="main-content-container">
+            <div class="horizontal-menu-container">
+              <!-- Главная -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="index.html" class="main-section-title">главная</a>
+              </div>
+              
+              <!-- Обо мне -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="obo mne.html" class="main-section-title">обо мне</a>
+              </div>
+              
+              <!-- Портфолио -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="portfolo.html" class="main-section-title">портфолио</a>
+              </div>
+              
+              <!-- Контакты -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="kontakt.html" class="main-section-title">контакты</a>
+              </div>
+              
+              <!-- Отзывы -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="otzv.html" class="main-section-title">отзывы</a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="contact-info-section">
+            <div class="contact-info-section2">
+              <p class="majestic-heading">контакты</p>
+              <p class="brushy-heading">Заинтересовало? свяжись со мной!</p>
+            </div>
+            <div class="contact-info-container">
+              <div class="contact-info-container1">
+                <!-- Изображение, при клике на которое открывается анкета -->
+            <!-- Контейнер для изображения с эффектом наведения -->
+         <div class="trigger-image-container" onclick="openModal()">
+            <img src="стрелка.png" class="arrow-image" alt="Нажмите здесь">
+            <img src="картинка6_1.png" alt="Нажмите для анкеты" class="trigger-image default">
+            <img src="картинка6_2.png" alt="Нажмите для анкеты" class="trigger-image hover">
+        </div>
+        
+        <div class="contact-info-section1">
+            <p class="contact-info-text-style">@zavianna</p>
+            <p class="contact-info-text-style">annanevashedelo@gmail.com</p>
+            <p class="contact-info-text-style contact-info-text-style:nth-child(3)">@zavan</p>
+            <p class="contact-info-text-style">+7 981 431 39 74</p>
+            <p class="contact-info-text-style">+7 981 431 39 74</p>
+        </div>
+        <img src="image_87ae3834.png" class="image-container-aspect-ratio-cover" />
+    </div>
+</div>
+          </div>
+
+
+
+
+
+<!-- Модальное окно с компактной анкетой -->
+<!-- Модальное окно с компактной анкетой -->
+<div id="myModal" class="modal compact-modal">
+  <div class="modal-content">
+    <div class="header-container">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 class="form-title">Заполни анкету</h2>
+    </div>
+    
+<form id="questionnaire" action="https://formspree.io/f/annanevashedelo@gmail.com" method="POST">
+  <!-- Поле ФИО -->
+  <div class="form-group">
+    <label for="name">ФИО:</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      required
+      pattern="[А-Яа-яЁё\s\-]+"
+      title="Только русские буквы, пробелы и дефисы"
+      oninput="validateName(this)"
+    >
+    <span class="validation-error" id="name-error"></span>
+  </div>
+  
+  <!-- Поле Email -->
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      required
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      title="Введите корректный email"
+      oninput="validateEmail(this)"
+    >
+    <span class="validation-error" id="email-error"></span>
+  </div>
+  
+  <!-- Поле Телефон -->
+  <div class="form-group">
+    <label for="phone">Телефон:</label>
+    <input 
+      type="tel" 
+      id="phone" 
+      name="phone"
+      required
+      pattern="\+7\s\d{3}\s\d{3}-\d{2}-\d{2}"
+      title="Формат: +7 999 999-99-99"
+      placeholder="+7 999 999-99-99"
+      oninput="formatPhone(this)"
+    >
+    <span class="validation-error" id="phone-error"></span>
+  </div>
+  
+      
+      <div class="form-group">
+        <label>Как с вами связаться?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="contact-phone" name="contact-method" value="phone" checked>
+            <label for="contact-phone">Позвонить</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="contact-email" name="contact-method" value="email">
+            <label for="contact-email">Написать</label>
+          </div>
+        </div>
+      </div>
+      
+      <input type="hidden" name="_language" value="ru">
+      <input type="hidden" name="_subject" value="Новая заявка с сайта">
+      
+      <div class="submit-btn-container">
+        <button type="submit" class="submit-btn">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+    // Открыть модальное окно
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    // Закрыть модальное окно
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    // Закрыть при клике вне окна
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+
+    // Обработка отправки формы
+    document.getElementById("questionnaire").onsubmit = function(e) {
+        e.preventDefault();
+        
+        // Получаем выбранный способ связи
+        const contactMethod = document.querySelector('input[name="contact-method"]:checked').value;
+        const contactText = contactMethod === 'phone' ? 'позвоним' : 'напишем';
+        
+        alert(`Мяу! Анкета отправлена! Мы Вам ${contactText} ♡.`);
+        closeModal();
+    }
+// Валидация ФИО (только кириллица, пробелы и дефисы)
+function validateName(input) {
+  const errorElement = document.getElementById('name-error');
+  const isValid = /^[А-Яа-яЁё\s\-]+$/.test(input.value);
+  
+  if (!isValid) {
+    errorElement.textContent = 'Только русские буквы, пробелы и дефисы';
+    input.setCustomValidity('Некорректное имя');
+  } else {
+    errorElement.textContent = '';
+    input.setCustomValidity('');
+  }
+}
+
+// Валидация email
+function validateEmail(input) {
+  const errorElement = document.getElementById('email-error');
+  const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(input.value);
+  
+  if (!isValid && input.value) {
+    errorElement.textContent = 'Введите корректный email';
+    input.setCustomValidity('Некорректный email');
+  } else {
+    errorElement.textContent = '';
+    input.setCustomValidity('');
+  }
+}
+
+// Форматирование и валидация телефона
+// Форматирование и валидация телефона
+function formatPhone(input) {
+  const errorElement = document.getElementById('phone-error');
+  let value = input.value;
+  
+  // Сохраняем позицию курсора
+  const startPos = input.selectionStart;
+  
+  // Удаляем все нецифровые символы, кроме +
+  value = value.replace(/[^\d\+]/g, '');
+  
+  // Если номер начинается не с +7, добавляем +7
+  if (!value.startsWith('+7') && !value.startsWith('7') && !value.startsWith('8')) {
+    value = '+7' + value.replace(/^\+/, '');
+  }
+  
+  // Форматирование в +7 999 123-45-67
+  if (value.length > 2) {
+    value = value.substring(0, 2) + ' ' + value.substring(2);
+  }
+  if (value.length > 6) {
+    value = value.substring(0, 6) + ' ' + value.substring(6);
+  }
+  if (value.length > 10) {
+    value = value.substring(0, 10) + '-' + value.substring(10);
+  }
+  if (value.length > 13) {
+    value = value.substring(0, 13) + '-' + value.substring(13);
+  }
+  
+  // Обрезаем лишние символы
+  value = value.substring(0, 16);
+  
+  // Устанавливаем новое значение
+  input.value = value;
+  
+
+  
+  // Валидация полного номера
+  const isValid = /^\+7\s\d{3}\s\d{3}-\d{2}-\d{2}$/.test(value);
+  
+  if (!isValid && value) {
+    errorElement.textContent = 'Формат: +7 999 999-99-99';
+    input.setCustomValidity('Некорректный телефон');
+  } else {
+    errorElement.textContent = '';
+    input.setCustomValidity('');
+  }
+}
+
+// Обработка отправки формы с дополнительной проверкой
+document.getElementById("questionnaire").addEventListener("submit", function(e) {
+  // Принудительно запускаем валидацию всех полей
+  validateName(document.getElementById('name'));
+  validateEmail(document.getElementById('email'));
+  formatPhone(document.getElementById('phone'));
+  
+  if (!this.checkValidity()) {
+    e.preventDefault();
+    alert('Пожалуйста, заполните все поля корректно');
+    return;
+  }
+  
+  // Показываем индикатор загрузки
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Отправка...';
+  
+  // Отправляем форму через Formspree
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      // Получаем выбранный способ связи
+      const contactMethod = document.querySelector('input[name="contact-method"]:checked').value;
+      const contactText = contactMethod === 'phone' ? 'позвоним' : 'напишем';
+      
+      alert(`Мяу! Анкета отправлена! Мы Вам ${contactText} ♡.`);
+      closeModal();
+      form.reset();
+    } else {
+      throw new Error('Ошибка сети');
+    }
+  })
+  .catch(error => {
+    alert('Произошла ошибка при отправке. Попробуйте еще раз.');
+    console.error('Error:', error);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  });
+});
+</script>
+
+
+    </div>
+  </body>
+</html>

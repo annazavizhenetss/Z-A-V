@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+
+    <style>
+      @font-face {
+        font-family: 'Deledda';
+        src: url('Deledda.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Mister Brush';
+        src: url('Mister Brush.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Desyatiy';
+        src: url('Desyatiy.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f1f1f;
+        min-height: 100vh;
+        display: flex;
+      }
+      
+      .page-container {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .main-content-container {
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: row;
+         align-items: stretch;
+         justify-content: flex-end;
+         width: 100%;
+      }
+      .horizontal-menu-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 120px;
+      }
+      .vertical-card-container {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 125px;
+        height: 100%;
+        position: relative;
+      }
+      .testimonial-card {
+        position: relative;
+        width: 120px;
+        height: 110px;
+        margin: 0 auto;
+      }
+      .image-container-compact {
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease;
+      }
+      .main-section-title {
+        position: absolute;
+        top: 35px;
+        width: 100%;
+        padding: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 18px;
+        color: black;
+        text-align: center;
+        transition: color 0.3s ease; 
+        pointer-events: auto; /* Обеспечиваем обработку hover */
+        text-decoration: none; 
+      }
+      .main-section-title:hover {
+        color: #BE4733 !important; /* Принудительное применение стиля */
+        text-decoration: none; 
+      }
+      .default-img {
+        opacity: 1;
+      }
+      .hover-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .default-img {
+        opacity: 0;
+      }
+      .vertical-card-container:hover .hover-img {
+        opacity: 1;
+      }
+
+
+
+      .portfolio-section-container1 {
+        flex: 0 0 auto;
+        margin-top: 28.5px;
+      }
+      .brushstroke-heading {
+        padding: 0;
+        margin: 0;
+        margin-top: -65px;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 190px; /* Такой же размер как Z.A.V. */
+        color: white;
+        letter-spacing: -2.2px;
+        margin-left: 82px; /* Такой же отступ как в главной */
+      }
+      .portfolio-section-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: -2px;
+        padding-left: 82px; /* Такой же отступ как в главной */
+      }
+      .section-title-container {
+        flex: 0 0 auto;
+        padding-top: 43px;
+      }
+      .brush-title-style {
+        padding: 0;
+        margin: 0;
+        font-family: 'Mister Brush', 'Arial', 'Helvetica', sans-serif;
+        font-size: 42px; /* Такой же размер как "графический дизайнер" */
+        color: #be4733;
+        white-space: pre-wrap;
+        line-height: 2em;
+        text-decoration: none;
+        position: relative;
+      }
+      .brush-title-style:hover::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px; /* Положение под текстом */
+        width: 100%;
+        height: 2px; /* Толщина линии */
+        background-color: #BE4733; /* Цвет подчеркивания */
+        animation: underline 0.3s ease-out;
+      }
+      @keyframes underline {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      .section-title-wrapper {
+        margin-top: 54.67px;
+      }
+      .brush-title-style:first-child {
+        margin-top: 0px;
+      }
+      .cat-box {
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        max-width: initial;
+        border: none;
+      }
+
+
+      .cat {
+        margin: 0;
+        margin-top: -250px ;
+        margin-left: 150px ;
+        position: relative;
+        z-index: 1;
+        width: 500px;
+      }
+
+
+
+      .hover-effect {
+       display: flex;
+       align-items: center;
+       position: relative;
+       margin-top: 150px ;
+      }
+
+      .hover-text {
+        color: white;
+        font: 400 58px Mister Brush;
+        transition: color 0.3s;
+        z-index: 3;
+        position: relative;
+        text-decoration: none;
+      }
+
+      .hover-text:hover {
+         color: #be4733; /* Цвет при наведении */
+      }
+
+      .hidden-image {
+        opacity: 0;
+        width: 50px;
+        height: auto;
+        transition: opacity 0.3s;
+        position: absolute;
+        left: calc(100% + 10px); /* Позиция справа от текста + отступ */
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hover-text:hover ~ .hidden-image {
+        opacity: 1; /* Показываем картинку при наведении */
+      }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Стандартный favicon -->
+  <link rel="icon" href="лого-01.ico" type="image/x-icon">
+  
+  <!-- Для Retina-дисплеев -->
+  <link rel="icon" href="лого32.png" sizes="32x32">
+  <link rel="icon" href="лого64-01.png" sizes="64x64">
+
+  
+  </head>
+  <body>
+
+<!-- Шапка с кнопками -->
+    <div class="page-container">
+          <div class="main-content-container">
+            <div class="horizontal-menu-container">
+              <!-- Главная -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="index.html" class="main-section-title">главная</a>
+              </div>
+              
+              <!-- Обо мне -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="obo mne.html" class="main-section-title">обо мне</a>
+              </div>
+              
+              <!-- Портфолио -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img" />
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img" />
+                </div>
+                <a href="portfolo.html" class="main-section-title">портфолио</a>
+              </div>
+              
+              <!-- Контакты -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img"/>
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img"/>
+                </div>
+                <a href="kontakt.html" class="main-section-title">контакты</a>
+              </div>
+              
+              <!-- Отзывы -->
+              <div class="vertical-card-container">
+                <div class="testimonial-card">
+                  <img src="image_2c343cdd.png" class="image-container-compact default-img"/>
+                  <img src="image_3c343cdd.png" class="image-container-compact hover-img"/>
+                </div>
+                <a href="otzv.html" class="main-section-title">отзывы</a>
+              </div>
+            </div>
+          </div>
+
+
+            <div class="portfolio-section-container1">
+              <p class="brushstroke-heading">портфолио</p>
+              <div class="portfolio-section-container">
+                <div class="section-title-container">
+                <p><a href="ill.html" class="brush-title-style section-title-wrapper brush-title-style:first-child">иллюстрации </a></p>
+                <p><a href="log.html" class="brush-title-style section-title-wrapper">логотипы</a></p>
+                <p><a href="pech.html" class="brush-title-style section-title-wrapper">печатная продукция</a></p>
+                <p><a href="fot.html" class="brush-title-style section-title-wrapper">фотография</a></p>
+                <p><a href="lich.html" class="brush-title-style section-title-wrapper">личные работы</a></p>
+                </div>
+                <div class="cat-box">
+                  <div class="hover-effect">
+                    <a href="kontakt.html" class="hover-text">мяу</a>
+                    <img src="image_lapka.png" class="hidden-image" alt="Картинка">
+                  </div>
+                  <img src="image_9cefa8c8.png" class="cat" />
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </body>
+</html>
